@@ -19,7 +19,7 @@ class Author(models.Model):
     about_author = models.TextField()
 
     def __unicode__(self):
-        return "%s %s %s" % (self.first_name, self.last_name, self.email, )
+        return u"%s %s %s" % (self.first_name, self.last_name, self.email, )
 
 class Products(models.Model):
     IN_STOCK_CHOICES = (
@@ -38,6 +38,7 @@ class Products(models.Model):
     prev_img = models.ImageField(upload_to=u'prev_img_book', blank=True, null=True)
     in_stock = models.BooleanField(default=1, choices=IN_STOCK_CHOICES)
     isbn = models.CharField(default='', blank=True, max_length=200)
+    authors = models.ManyToManyField(Author)
 
 
     def save(self, *args, **kwargs):
