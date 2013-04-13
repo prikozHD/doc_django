@@ -8,6 +8,7 @@ class AdminProducts(admin.ModelAdmin):
 admin.site.register(Products, AdminProducts)
 
 admin.site.register(Category)
+admin.site.register(Author)
 
 
 
