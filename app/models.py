@@ -16,14 +16,16 @@ class Author(models.Model):
     first_name = models.CharField(max_length=100, default = '', blank=True)
     last_name = models.CharField(max_length=100, default = '', blank=True)
     email = models.EmailField(max_length=200, default = '', blank=True)
+    about_author = models.TextField()
+
+    def __unicode__(self):
+        return "%s %s %s" % (self.first_name, self.last_name, self.email, )
 
 class Products(models.Model):
     IN_STOCK_CHOICES = (
         (1, u"Да"),
         (1, u"Нет")
     )
-
-
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     description = models.TextField()
