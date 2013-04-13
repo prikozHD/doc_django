@@ -6,12 +6,12 @@ from models import *
 
 def render_category(fn):
     def wrapper(request, *args,**kwargs):
-        all_category = SubCategory.objects.all()
-        return fn(request,all_category)
+        main_category = MainCategory.objects.all()
+        return fn(request,main_category)
     return wrapper
 
 @render_category
-def products(request, all_category):
+def products(request, main_category):
     products_list = Products.objects.all()
     return render_to_response('products.html', locals(), context_instance=RequestContext(request))
 

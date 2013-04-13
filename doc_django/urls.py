@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^products/$', 'app.views.products',  {'all_category':''},name = 'products'),
+    url(r'^products/$', 'app.views.products',  {'main_category':''},name = 'products'),
     url(r'^product/(?P<slug>[a-zA-Z0-9_-]*)/$', 'app.views.get_product', name = 'product'),
 
     url(r'^admin_tools/', include('admin_tools.urls')),
