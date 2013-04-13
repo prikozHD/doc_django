@@ -2,11 +2,11 @@
 
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, RequestContext, get_object_or_404
-from models import Products,Category
+from models import *
 
 def render_category(fn):
     def wrapper(request, *args,**kwargs):
-        all_category = Category.objects.all()
+        all_category = SubCategory.objects.all()
         return fn(request,all_category)
     return wrapper
 

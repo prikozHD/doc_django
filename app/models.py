@@ -8,15 +8,24 @@ class MainCategory(models.Model):
     def __unicode__(self):
         return self.main_category_name
 
-class Category(models.Model):
-    name = models.CharField(max_length=200)
-
-    def __unicode__(self):
-        return self.name
-
     class Meta:
         verbose_name = u"Категория"
         verbose_name_plural = u"Категории"
+
+
+class SubCategory(models.Model):
+    name = models.CharField(max_length=200)
+    main_category = models.ForeignKey(MainCategory)
+
+
+    def __unicode__(self):
+        return "%s %s " % (self.main_category.main_category_name, self.name, )
+
+    class Meta:
+        verbose_name = u"Под категория"
+        verbose_name_plural = u"Под категории"
+
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100, default = '', blank=True)
@@ -40,7 +49,7 @@ class Products(models.Model):
     product_count = models.IntegerField(default=0)
     article = models.CharField(max_length=200,default='')
     price = models.DecimalField(default=0.00, max_length=8, max_digits=6, decimal_places=2)
-    category = models.ForeignKey(Category)
+    subsategory = models.ForeignKey(SubCategory)
     prev_img = models.ImageField(upload_to=u'prev_img_book', blank=True, null=True)
     in_stock = models.BooleanField(default=1, choices=IN_STOCK_CHOICES)
     isbn = models.CharField(default='', blank=True, max_length=200)
