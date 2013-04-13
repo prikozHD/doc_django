@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block product %}
     {% load qr_tags %}
-
+    <p><a href="{% url products %}">Назад</a></p>
     <h2>{{ product.title }}</h2>
+    <p>
+        <a href="{{ product.subsategory.main_category.id }}">{{ product.subsategory.main_category.main_category_name }}</a>->
+        <a href="{{ product.subsategory.id }}">{{ product.subsategory.name }}</a>
+    </p>
     <p><img src="{{ product.prev_img.url }}" alt="{{ product.title }}"></p>
     {% qr_from_text "{{ product.isbn }}" "s" %}
     <p>{{ product.description }}</p>

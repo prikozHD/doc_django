@@ -1,8 +1,10 @@
 {% for category in main_category %}
-    <p>{{ category.main_category_name }}<input class="check_category" type="checkbox" value="{{ category.id }}"></p>
-    {% for sub_category in category.subcategory_set.all %}
-        <p>{{ sub_category.name }}<input class="check_category" type="checkbox" value="{{ category.id }}"></p>
-    {% endfor %}
+    <p class="main_category" >
+        {{ category.main_category_name }}
+        {% for sub_category in category.subcategory_set.all %}
+            <p class="sub_category" >{{ sub_category.name }}</p>
+        {% endfor %}
+    </p>
 {% endfor %}
 
 
