@@ -2,6 +2,12 @@
 from django.db import models
 import datetime
 
+class MainCategory(models.Model):
+    main_category_name = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.main_category_name
+
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
