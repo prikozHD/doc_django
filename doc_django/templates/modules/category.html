@@ -1,11 +1,10 @@
 {% for category in main_category %}
-    <p class="main_category" >
+    <div class="main_category" >
         {{ category.main_category_name }}
         {% for sub_category in category.subcategory_set.all %}
             <p class="sub_category" >{{ sub_category.name }}</p>
         {% endfor %}
-    </p>
+    </div>
 {% endfor %}
-
 
 
