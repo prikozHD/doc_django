@@ -47,6 +47,7 @@ class Products(models.Model):
         (1, u"Да"),
         (1, u"Нет")
     )
+
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     description = models.TextField()
@@ -55,11 +56,15 @@ class Products(models.Model):
     product_count = models.IntegerField(default=0)
     article = models.CharField(max_length=200,default='')
     price = models.DecimalField(default=0.00, max_length=8, max_digits=6, decimal_places=2)
+    discount = models.IntegerField(default=0.0, blank=True)
+
+    discount_price = models.FloatField(default=0.0)
     subsategory = models.ForeignKey(SubCategory)
     prev_img = models.ImageField(upload_to=u'prev_img_book', blank=True, null=True)
     in_stock = models.BooleanField(default=1, choices=IN_STOCK_CHOICES)
     isbn = models.CharField(default='', blank=True, max_length=200)
     authors = models.ManyToManyField(Author)
+
 
 
     def save(self, *args, **kwargs):
@@ -74,6 +79,8 @@ class Products(models.Model):
             cnt = ContentFile(sIO.getvalue())
             self.prev_img.save(self.prev_img.name, cnt, save=False)
 
+        if self.discount > 0.0:
+            self.discount_price  = (self.price * self.discount)/100 if self.discount > 0.0 else self.price
         super(Products, self).save(*args, **kwargs)
 
 
