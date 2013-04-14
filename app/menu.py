@@ -20,10 +20,10 @@ class CustomMenu(Menu):
     def __init__(self, **kwargs):
         Menu.__init__(self, **kwargs)
         self.children += [
-            items.MenuItem(u"Мего сайтец", reverse('admin:index')),
+            items.MenuItem(u"MAGAZINE.ORG", reverse('admin:index')),
             items.Bookmarks(),
             items.AppList(
-                    u"Меню управленіем сайта",
+                    u"Меню управлением сайта",
                 exclude=('django.contrib.*',)
             ),
             items.AppList(

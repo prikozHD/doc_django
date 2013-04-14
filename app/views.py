@@ -12,18 +12,18 @@ def products(request, main_category):
     return render_to_response('products.html', locals(), context_instance=RequestContext(request))
 
 
-@render_category
+
 def get_product(request, slug):
     product = get_object_or_404(Products, slug = slug)
     return render(request, 'product.html', locals())
 
 
-@render_category
+
 def search(request):
     return HttpResponse(request.META['QUERY_STRING'])
 
 
-@render_category
+
 def main_category(request, main_category_name):
     pass
 
