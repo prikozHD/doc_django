@@ -1,5 +1,11 @@
 {% include 'modules/header.html' %}
 {% include 'modules/category.html' %}
+
+<form action="/search/" method="get" id="search_form">
+    <input type="text" name="query" id="search_field">
+    <input type="submit" id="search_button">
+</form>
+
     {% block category %}{% endblock %}
     {% block products %}{% endblock %}
     {% block product %}{% endblock %}

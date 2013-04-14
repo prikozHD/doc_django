@@ -21,6 +21,10 @@ def get_product(request, slug):
     return render(request, 'product.html', locals())
 
 
+def search(request):
+    return HttpResponse(request.META['QUERY_STRING'])
+
+
 
 
 

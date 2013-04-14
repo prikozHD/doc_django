@@ -7,3 +7,13 @@ body{
 .sub_category{
     display: none;
 }
+
+#search_form{
+    float: right;
+}
+
+#search_button{
+    border: none;
+    height: 40px;
+    font-weight: bold;
+}
