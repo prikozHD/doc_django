@@ -1,12 +1,18 @@
 #encoding:utf-8
 from django.db import models
 import datetime
+from django.utils.encoding import iri_to_uri
 
 class MainCategory(models.Model):
     main_category_name = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.main_category_name
+
+    @models.permalink
+    def get_absolute_url(self):
+        url = iri_to_uri(self.main_category_name)
+        return ('main_category', (), {'main_category_name':url})
 
     class Meta:
         verbose_name = u"Категория"

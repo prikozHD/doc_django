@@ -24,6 +24,9 @@ def get_product(request, slug):
 def search(request):
     return HttpResponse(request.META['QUERY_STRING'])
 
+def main_category(request, main_category_name):
+    pass
+
 
 
 

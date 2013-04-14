@@ -3,9 +3,10 @@
     {% load qr_tags %}
     <p><a href="{% url products %}">Назад</a></p>
     <h2>{{ product.title }}</h2>
+    <p>{{ product.subsategory.main_category.get_absolute_url }}</p>
     <p>
-        <a href="{{ product.subsategory.main_category.id }}">{{ product.subsategory.main_category.main_category_name }}</a>->
-        <a href="{{ product.subsategory.id }}">{{ product.subsategory.name }}</a>
+        <a href="{{ product.subsategory.main_category.get_absolute_url }}">{{ product.subsategory.main_category.main_category_name }}</a>->
+        <a href="{{ product.subsategory.get_absolute_url }}">{{ product.subsategory.name }}</a>
     </p>
     <p><img src="{{ product.prev_img.url }}" alt="{{ product.title }}"></p>
     {% qr_from_text "{{ product.isbn }}" "s" %}
