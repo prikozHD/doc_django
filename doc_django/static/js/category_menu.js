@@ -1,6 +1,6 @@
-$(".main_category").click(function () {
-
+$(".main_category").click(function (event) {
     if($(this).children().css('display') == 'none'){
+        $(this).children().css('margin',"15px");
         $(this).children().slideDown();
 
     }
@@ -8,3 +8,10 @@ $(".main_category").click(function () {
         $(this).children().slideUp();
     }
 });
+
+
+$(".sub_category").click(function (event) {
+    event.stopPropagation();
+    console.log('ok');
+});
+
