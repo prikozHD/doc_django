@@ -1,6 +1,9 @@
 body{
     background-color: #ffffff;
 }
+.main_category{
+    cursor: pointer;
+}
 .sub_category{
     display: none;
 }
