@@ -52,18 +52,18 @@ class Products(models.Model):
     slug = models.SlugField(max_length=200, verbose_name=u"URL книги")
     description = models.TextField(verbose_name=u"Описание для книги")
     pub_date = models.DateField(blank=True, null=True, verbose_name=u"Дата публикации")
-    num_pages = models.IntegerField(default=0, null=True,verbose_name=u"Количество страниц")
+    num_pages = models.IntegerField(default=0, null=True, verbose_name=u"Количество страниц")
     product_count = models.IntegerField(default=0, verbose_name=u"Количество екземпляров на складе")
-    article = models.CharField(max_length=200,default='',verbose_name=u"Артикул")
+    article = models.CharField(max_length=200,default='', verbose_name=u"Артикул")
     price = models.DecimalField(default=0.00, max_length=8, max_digits=6, decimal_places=2,verbose_name=u"Цена")
-    discount = models.IntegerField(default=0.0, blank=True,verbose_name=u"Скидка")
-    discount_from_money = models.FloatField(default=0.0, blank=True,verbose_name=u"Скидка в грн")
-    discount_price = models.FloatField(default=0.0,verbose_name=u"Цена с учетом скидки")
+    discount = models.IntegerField(default=0.0, blank=True, verbose_name=u"Скидка")
+    discount_from_money = models.FloatField(default=0.0, blank=True, verbose_name=u"Скидка в грн")
+    discount_price = models.FloatField(default=0.0, verbose_name=u"Цена с учетом скидки")
     subsategory = models.ForeignKey(SubCategory, verbose_name=u"Под категория")
-    prev_img = models.ImageField(upload_to=u'prev_img_book', blank=True, null=True,verbose_name=u"Обложка книги")
+    prev_img = models.ImageField(upload_to=u'prev_img_book', blank=True, null=True, verbose_name=u"Обложка книги")
     in_stock = models.BooleanField(default=1, choices=IN_STOCK_CHOICES, verbose_name=u"В наличии")
-    isbn = models.CharField(default='', blank=True, max_length=200,verbose_name=u"ISBN")
-    authors = models.ManyToManyField(Author,verbose_name=u"Автори книги")
+    isbn = models.CharField(default='', blank=True, max_length=200, verbose_name=u"ISBN")
+    authors = models.ManyToManyField(Author, verbose_name=u"Автори книги")
 
 
     def display_admin_prev_img(self):
@@ -100,11 +100,6 @@ class Products(models.Model):
             self.discount_price  = self.price - (self.price * self.discount)/100 if self.discount > 0.0 else self.price
             self.discount_from_money = (self.price * self.discount)/100 if self.discount > 0.0 else 0.0
         super(Products, self).save(*args, **kwargs)
-
-
-
-
-
 
     def __unicode__(self):
         return self.title
